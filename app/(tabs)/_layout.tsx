@@ -2,7 +2,7 @@ import { Stack, Tabs } from "expo-router";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function RootLayout() {
+export default function TabsLayout() {
     return (
         <Tabs screenOptions={{
             tabBarActiveTintColor: 'tomato',

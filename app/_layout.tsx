@@ -1,9 +1,10 @@
-import { Stack, useRouter } from "expo-router";
 import React, { useEffect } from "react";
+import { Stack, useRouter } from "expo-router";
+import { AuthProvider } from "@/lib/auth-context";
 
 function RouteGuard({children}: {children: React.ReactNode}) {
   const router = useRouter();
-  const isAuthenticated = false; // Replace with your auth logic
+  const isAuthenticated = false;
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -11,19 +12,21 @@ function RouteGuard({children}: {children: React.ReactNode}) {
       console.log("User not authenticated, redirecting to login...");
       router.replace("/auth");
     }
-  }, [isAuthenticated]);
-
+  });
   return <>{children}</>;
 }
 
 export default function RootLayout() {
   return (
     <>
-    <RouteGuard>
-      <Stack >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </RouteGuard>
+    <AuthProvider>
+
+      {/* <RouteGuard> */}
+        <Stack >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      {/* </RouteGuard> */}
+    </AuthProvider>
     </>
   );
 }
